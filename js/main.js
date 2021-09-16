@@ -16,19 +16,25 @@ addBtn.addEventListener('click', function() {
       if (todoListBD.length > 0) {
          let li = document.createElement('li');
          for (let i in todoListBD) {
-            li.innerHTML = `<p class="count">Запись №${+i + 1}:</p><p class="date">${date}</p><p class="time">${time}</p> <p class="txt">${todoListBD[i]}</p><button class="todo__ok">V</button> <button class="todo__del">X</button>`;
+            li.innerHTML = `<p class="count">Запись №${+i + 1}:</p><p class="date">${date}</p><p class="time">${time}</p> <p class="txt">${todoListBD[i]}</p><button class="todo__ok">W</button> <button class="todo__del">X</button>`;
             todoList.append(li);
+            if (i == 0) {
+               todoMessanger.innerHTML = `<p class="green">Поздравляем, Ваша первая запись успешно добавлена</p>`;
+            } else {
+               todoMessanger.innerHTML = `<p class="green">Запись №${+i + 1} успешно добавлена</p>`
+            }
             setTimeout(
                () => li.classList.add('_active'),1000
             );
+
+            
          };
       }
       todoInput.value = "";
-      todoMessanger.innerHTML = `<p class="green">Запись успешно добавлена</p>`;
+      ;
    } else {
       todoMessanger.innerHTML = `<p class="red">Зполните строку ввода</p>`;
    }
-
    let todoDel = document.querySelectorAll(".todo__del");
    todoDel.forEach((e) => {
       e.addEventListener ('click', function() {
@@ -46,7 +52,7 @@ addBtn.addEventListener('click', function() {
       
       e.addEventListener ('click', function() {
          this.previousSibling.style.textDecoration = "line-through";
-         todoMessanger.innerHTML = `<p class="yellow">Запись отмечена как ненужная</p>`;
+         todoMessanger.innerHTML = `<p class="yellow">Запись отмечена как перечеркнутая</p>`;
       })
    });
 });
